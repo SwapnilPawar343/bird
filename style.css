@@ -1,18 +1,28 @@
+/* ===== RESET AND BASE STYLES ===== */
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
 }
+
+body, html {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	touch-action: manipulation; /* disables double-tap zoom & scroll */
+}
+
+/* ===== BACKGROUND ===== */
 .background {
 	height: 100vh;
 	width: 100vw;
 	background: url('images/background-img.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+	background-size: cover;
+	position: relative;
 }
+
+/* ===== BIRD CHARACTER ===== */
 .bird {
 	height: 100px;
 	width: 130px;
@@ -20,16 +30,24 @@
 	top: 40vh;
 	left: 30vw;
 	z-index: 100;
+	pointer-events: none; /* avoid accidental taps */
+	user-select: none;
 }
+
+/* ===== PIPE SPRITES ===== */
 .pipe_sprite {
 	position: fixed;
 	top: 40vh;
 	left: 100vw;
 	height: 70vh;
 	width: 6vw;
-	background:radial-gradient(lightgreen 50%, green);
+	background: radial-gradient(lightgreen 50%, green);
 	border: 5px solid black;
+	border-radius: 10px;
+	transition: transform 0.2s;
 }
+
+/* ===== GAME MESSAGES ===== */
 .message {
 	position: absolute;
 	z-index: 10;
@@ -39,13 +57,20 @@
 	font-size: 4em;
 	transform: translate(-50%, -50%);
 	text-align: center;
+	width: 80%;
+	white-space: normal;
+	word-break: break-word;
+	pointer-events: none;
 }
-.messageStyle{
+
+.messageStyle {
 	background: white;
 	padding: 30px;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	border-radius: 5%;
 }
+
+/* ===== SCORE ===== */
 .score {
 	position: fixed;
 	z-index: 10;
@@ -58,26 +83,55 @@
 	top: 0;
 	left: 0;
 	margin: 10px;
-	font-family: Arial, Helvetica, sans-serif;
+	user-select: none;
 }
+
 .score_val {
 	color: gold;
 	font-weight: bold;
 }
+
+/* ===== RESPONSIVE STYLES ===== */
 @media only screen and (max-width: 1080px) {
-    .message{
+	.message {
 		font-size: 50px;
 		top: 50%;
-		white-space: nowrap;
+		width: 90%;
 	}
-	.score{
+
+	.score {
 		font-size: 8vh;
 	}
-	.bird{
-		width: 120px;
-		height: 90px;
+
+	.bird {
+		width: 100px;
+		height: 80px;
 	}
-	.pipe_sprite{
-		width: 14vw;
+
+	.pipe_sprite {
+		width: 12vw;
+	}
+}
+
+/* Even smaller screen adjustments */
+@media only screen and (max-width: 600px) {
+	.message {
+		font-size: 40px;
+		top: 50%;
+		width: 95%;
+	}
+
+	.bird {
+		width: 80px;
+		height: 70px;
+		left: 25vw;
+	}
+
+	.pipe_sprite {
+		width: 16vw;
+	}
+
+	.score {
+		font-size: 7vh;
 	}
 }
