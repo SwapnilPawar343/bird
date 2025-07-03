@@ -151,15 +151,9 @@ function handleGameOver() {
 
     console.log('🎯 Game Over: score is', score_val.innerHTML);
 
-    try {
-        window.parent.postMessage(
-            {
-                type: 'GAME_OVER',
-                score: +score_val.innerHTML
-            },
-            'http://localhost:5173' // ✅ React app origin
-        );
-    } catch (err) {
-        console.error('❌ Failed to postMessage to parent:', err);
-    }
+  const origin = window.location.hostname.includes("localhost")
+  ? "http://localhost:5173"
+  : "https://www.fulboost.fun";
+
+window.parent.postMessage({ type: "GAME_OVER", score: score }, origin);
 }
