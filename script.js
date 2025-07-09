@@ -148,12 +148,13 @@ function handleGameOver() {
     message.innerHTML = 'Game Over'.fontcolor('red') + '<br>Returning...';
     message.classList.add('messageStyle');
     sound_die.play();
-    console.log('🎯 Game Over: score is', score_val.innerHTML);
+    
+    const score = parseInt(score_val.innerHTML);
+    console.log('🎯 Game Over: score is', score);
 
-  const origin = window.location.hostname.includes("localhost")
-  ? "http://localhost:5173"
-  : "https://www.fulboost.fun";
+    const origin = window.location.hostname.includes("localhost")
+        ? "http://localhost:5173"
+        : "https://fulboost.fun";
 
-window.parent.postMessage({ type: "GAME_OVER", score:  parseInt(score_val.innerHTML)
- }, origin);
+    window.parent.postMessage({ type: "GAME_OVER", score: score }, origin);
 }
