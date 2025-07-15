@@ -30,6 +30,9 @@ function startGame() {
         score_title.innerHTML = 'Score : ';
         score_val.innerHTML = '0';
         message.classList.remove('messageStyle');
+
+          document.getElementById("bgMusic").play().catch(err => console.error("Music failed:", err)); //new sound bgm added
+
         play();
     }
 }
@@ -158,3 +161,4 @@ function handleGameOver() {
 
     window.parent.postMessage({ type: "GAME_OVER", score: score }, origin);
 }
+
